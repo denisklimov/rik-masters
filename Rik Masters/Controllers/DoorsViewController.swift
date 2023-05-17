@@ -79,7 +79,10 @@ extension DoorsViewController: UITableViewDelegate {
                 self.dataManager.updateDoor(door: doorForUpdate)
                 self.updateData()
             }
+            let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+            alertController.addAction(cancelAction)
             alertController.addAction(okAction)
+            
             self.present(alertController, animated: true)
         }
         

@@ -310,14 +310,14 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" image="video.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4x3-T2-GMm">
-                                <rect key="frame" x="16" y="117" width="361" height="230.66666666666671"/>
+                                <rect key="frame" x="0.0" y="117" width="393" height="230.66666666666671"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Udg-6T-o9h"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="Udg-6T-o9h" firstAttribute="trailing" secondItem="4x3-T2-GMm" secondAttribute="trailing" constant="16" id="2gM-lz-TfH"/>
+                            <constraint firstItem="Udg-6T-o9h" firstAttribute="trailing" secondItem="4x3-T2-GMm" secondAttribute="trailing" id="2gM-lz-TfH"/>
                             <constraint firstItem="8ue-C7-eUy" firstAttribute="top" secondItem="Wez-X4-2pZ" secondAttribute="bottom" constant="20" id="DLc-zB-dVY"/>
                             <constraint firstItem="42u-HD-xCv" firstAttribute="top" secondItem="Udg-6T-o9h" secondAttribute="top" constant="20" id="FJk-Kt-Ehh"/>
                             <constraint firstItem="8ue-C7-eUy" firstAttribute="leading" secondItem="Udg-6T-o9h" secondAttribute="leading" constant="16" id="Hjb-eA-iUG"/>
@@ -327,8 +327,7 @@
                             <constraint firstItem="Wez-X4-2pZ" firstAttribute="top" secondItem="4x3-T2-GMm" secondAttribute="bottom" constant="40" id="Mn3-ze-3rm"/>
                             <constraint firstItem="Udg-6T-o9h" firstAttribute="trailing" secondItem="8ue-C7-eUy" secondAttribute="trailing" constant="16" id="Qzd-hw-GB5"/>
                             <constraint firstItem="4x3-T2-GMm" firstAttribute="top" secondItem="42u-HD-xCv" secondAttribute="bottom" priority="999" constant="20" id="fVO-08-g9G"/>
-                            <constraint firstItem="4x3-T2-GMm" firstAttribute="leading" secondItem="Udg-6T-o9h" secondAttribute="leading" constant="16" id="mMn-Hd-fIj"/>
-                            <constraint firstItem="4x3-T2-GMm" firstAttribute="centerX" secondItem="dY0-3x-Crz" secondAttribute="centerX" id="xDJ-gQ-66g"/>
+                            <constraint firstItem="4x3-T2-GMm" firstAttribute="leading" secondItem="Udg-6T-o9h" secondAttribute="leading" id="mMn-Hd-fIj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TVX-Sf-L0P"/>
