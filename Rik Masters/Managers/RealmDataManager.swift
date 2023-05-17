@@ -71,16 +71,6 @@ class RealmDataManager {
             return realm.objects(RealmDoor.self).count > 0 ? true : false
         }
     }
-    
-//    public func read<T: RealmFetchable>(for type: T.Type) -> Results<T> {
-//        return realm.objects(T.self)
-//    }
-    
-    
-    
-    
-    
-    
 
     
     public func readCameras() -> Results<RealmCamera> {
@@ -133,14 +123,13 @@ class RealmDataManager {
     
     
     public func updateDoor(door: DoorModel) {
-        print("BEFORE: \(readDoors())")
+        
         let doorForUpdate = realm.objects(RealmDoor.self).where{ $0.id == door.id }.first
         try! realm.write {
             doorForUpdate?.favorites = door.favorites
             doorForUpdate?.name = door.name
             doorForUpdate?.lock = door.lock
         }
-        print("AFTER: \(readDoors())")
     }
     
     
