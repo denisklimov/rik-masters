@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class CamerasTableViewCell: UITableViewCell {
     
     @IBOutlet weak var snapShotImage: UIImageView!
@@ -15,6 +14,7 @@ class CamerasTableViewCell: UITableViewCell {
     @IBOutlet weak var recordSign: UIStackView!
     @IBOutlet weak var favoriteSign: UIImageView!
     @IBOutlet weak var playSign: UIImageView!
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()

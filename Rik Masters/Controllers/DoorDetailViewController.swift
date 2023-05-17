@@ -9,31 +9,45 @@ import UIKit
 
 class DoorDetailViewController: UIViewController {
 
-    var isLocked = true
-    let locked = UIImage(systemName: "lock")
-    let unlocked = UIImage(systemName: "lock.open")
+    let dataManager = DataManager()
     
+    let lockedImage = UIImage(named: "locked")
+    let unlockedImage = UIImage(named: "unlocked")
+    var door: DoorModel?
+    var doorsViewController: DoorsViewController? = nil
     
     @IBOutlet weak var doorNameLabel: UILabel!
     @IBOutlet weak var doorLockImage: UIImageView!
-    @IBOutlet weak var doorRoomLabel: UILabel!
-    @IBOutlet weak var doorIdLabel: UILabel!
+    @IBOutlet weak var translationImage: UIImageView!
     @IBOutlet weak var doorLockButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doorLockButton.setTitle("Открыть дверь", for: .normal)
+        guard let door = door else { return }
+        doorNameLabel.text = door.name
+        if let snapshot = door.snapshot {
+            translationImage.isHidden = false
+            translationImage.image = snapshot
+        } else {
+            translationImage.isHidden = true
+        }
+        doorLockImage.image = door.lock ? lockedImage : unlockedImage
+        doorLockButton.setTitle(door.lock ? "Открыть дверь" : "Закрыть дверь", for: .normal)
         
     }
+    
 
     @IBAction func doorLockToggle(_ sender: UIButton) {
-
-        doorLockImage.image = !isLocked ? locked : unlocked
-        doorLockButton.setTitle(!isLocked ? "Открыть дверь" : "Закрыть дверь", for: .normal)
-        isLocked = isLocked ? false : true
-    }
-    @IBAction func favoriteButton(_ sender: UIButton) {
         
+        guard var door = door else { return }
+        
+        doorLockImage.image = !door.lock ? lockedImage : unlockedImage
+        doorLockButton.setTitle(!door.lock ? "Открыть дверь" : "Закрыть дверь", for: .normal)
+        
+        door.lock = !door.lock
+        dataManager.updateDoor(door: door)
+        doorsViewController!.updateData(from: .database)
     }
 }

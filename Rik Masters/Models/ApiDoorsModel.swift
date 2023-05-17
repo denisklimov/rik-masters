@@ -7,12 +7,10 @@
 
 import Foundation
 
-
 struct APIDoorsModel: Codable {
     let success: Bool
     let data: [Door]
 }
-
 
 struct Door: Codable {
     let name: String

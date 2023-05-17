@@ -1,5 +1,5 @@
 //
-//  ApiDecoder.swift
+//  ApiDataManager.swift
 //  Rik Masters
 //
 //  Created by Denis Klimov on 13.05.2023.
@@ -9,9 +9,26 @@ import Foundation
 import UIKit
 
 
-class ApiDecoder {
+enum ApiDecoderError: Error {
+    case notSuccess
+}
+
+
+extension ApiDecoderError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .notSuccess:
+            return "Not success ressponce from API server."
+        }
+    }
+}
+
+
+
+class ApiDataManager {
     
-    func getCameras() async throws -> [CameraModel] {
+    
+    public func getCameras() async throws -> [CameraModel] {
 
         let data: Data
         let urlString = "https://cars.cprogroup.ru/api/rubetek/cameras/"
@@ -25,7 +42,7 @@ class ApiDecoder {
         let model: ApiCamerasModel
         
         do {
-            model = try await decodeData(from: data, to: ApiCamerasModel.self)
+            model = try decodeData(from: data, to: ApiCamerasModel.self)
         } catch {
             throw error
         }
@@ -41,7 +58,13 @@ class ApiDecoder {
                 snapshotImage = try? UIImage(data: Data(contentsOf: snapshotUrl!))
             }
             
-            let cameraModel = CameraModel(name: camera.name, snapshot: snapshotImage, room: camera.room, id: camera.id, favorites: camera.favorites, rec: camera.rec)
+            let cameraModel = CameraModel(
+                name: camera.name,
+                snapshot: snapshotImage,
+                room: camera.room,
+                id: camera.id,
+                favorites: camera.favorites,
+                rec: camera.rec)
             cameras.append(cameraModel)
         }
         
@@ -49,7 +72,7 @@ class ApiDecoder {
     }
     
     
-    func getDoors() async throws -> [DoorModel] {
+    public func getDoors() async throws -> [DoorModel] {
         
         let data: Data
         let urlString = "https://cars.cprogroup.ru/api/rubetek/doors/"
@@ -63,7 +86,7 @@ class ApiDecoder {
         let model: APIDoorsModel
         
         do {
-            model = try await decodeData(from: data, to: APIDoorsModel.self)
+            model = try decodeData(from: data, to: APIDoorsModel.self)
         } catch {
             throw error
         }
@@ -90,38 +113,29 @@ class ApiDecoder {
     
     
     private func getData(from urlString: String) async throws -> Data {
+        
         var data: Data
         let urlString = urlString
+        
         do {
             data = try await NetworkManager().getData(from: urlString)
         } catch {
             throw error
         }
+        
         return data
     }
     
-    private func decodeData<T: Decodable>(from data: Data, to model: T.Type) async throws -> T {
+    private func decodeData<T: Decodable>(from data: Data, to model: T.Type) throws -> T {
+        
         var model: T
+        
         do {
             model = try JSONDecoder().decode(T.self, from: data)
         } catch {
             throw error
         }
+        
         return model
-    }
-}
-
-
-enum ApiDecoderError: Error {
-    case notSuccess
-}
-
-
-extension ApiDecoderError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .notSuccess:
-            return "Not success ressponce from API server."
-        }
     }
 }

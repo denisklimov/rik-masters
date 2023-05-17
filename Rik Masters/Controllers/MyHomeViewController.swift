@@ -15,6 +15,7 @@ class MyHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         camerasContainerView.alpha = 1
         doorsContainerView.alpha = 0
     }
@@ -33,5 +34,4 @@ class MyHomeViewController: UIViewController {
             break
         }
     }
-    
 }

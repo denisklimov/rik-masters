@@ -7,18 +7,15 @@
 
 import Foundation
 
-
 struct ApiCamerasModel: Codable {
     let success: Bool
     let data: RoomsAndCameras
 }
 
-
 struct RoomsAndCameras: Codable {
     let room: [String]
     let cameras: [Camera]
 }
-
 
 struct Camera: Codable {
     let name: String
